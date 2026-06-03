@@ -1,8 +1,10 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useResumeStore } from "../../store/resumeStore";
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 export default function EducationForm() {
-  const { resume, addEducation, updateEducation } = useResumeStore();
+  const { resume, addEducation, updateEducation, deleteEducation } =
+    useResumeStore();
 
   return (
     <Box mt={4}>
@@ -39,6 +41,11 @@ export default function EducationForm() {
             value={edu.marks}
             onChange={(e) => updateEducation(edu.id, "marks", e.target.value)}
           />
+          <Box display="flex" justifyContent="flex-end">
+            <IconButton onClick={() => deleteEducation(edu.id)}>
+              <DeleteIcon />
+            </IconButton>
+          </Box>
         </Box>
       ))}
     </Box>

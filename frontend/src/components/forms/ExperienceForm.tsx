@@ -6,12 +6,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 import { useResumeStore } from "../../store/resumeStore";
 
 export default function ExperienceForm() {
-  const { resume, addExperience, updateExperience } = useResumeStore();
-
+  const { resume, addExperience, updateExperience, deleteExperience } =
+    useResumeStore();
   return (
     <>
       <Box mt={4}>
@@ -95,6 +96,11 @@ export default function ExperienceForm() {
                 updateExperience(exp.id, "description", e.target.value)
               }
             />
+            <Box display="flex" justifyContent="flex-end">
+              <IconButton onClick={() => deleteExperience(exp.id)}>
+                <DeleteIcon />
+              </IconButton>
+            </Box>
           </Box>
         ))}
       </Box>

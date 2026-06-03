@@ -22,6 +22,9 @@ interface ResumeStore {
   addSkill: (skill: string) => void;
 
   removeSkill: (skill: string) => void;
+
+  deleteExperience: (id: string) => void;
+  deleteEducation: (id: string) => void;
 }
 
 const storedData = loadResume();
@@ -171,5 +174,29 @@ export const useResumeStore = create<ResumeStore>((set) => ({
 
       saveResume(updated);
       return { resume: updated };
+    }),
+  deleteExperience: (id) =>
+    set((state) => {
+      const updated = {
+        ...state.resume,
+        experiences: state.resume.experiences.filter((exp) => exp.id !== id),
+      };
+
+      saveResume(updated);
+
+      return { resume: updated };
+    }),
+  deleteEducation: (id) =>
+    set((state) => {
+      const updated = {
+        ...state.resume,
+        education: state.resume.education.filter((edu) => edu.id !== id),
+      };
+
+      saveResume(updated);
+
+      return {
+        resume: updated,
+      };
     }),
 }));

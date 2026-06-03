@@ -13,13 +13,38 @@ export default function ResumePreview() {
         minHeight: "100%",
       }}
     >
-      <Typography variant="h4" fontWeight={700}>
+      <Typography variant="h3" fontWeight={700}>
+        <Typography color="text.secondary">
+          {resume.personalInfo.city}
+          {resume.personalInfo.city && resume.personalInfo.country ? ", " : ""}
+          {resume.personalInfo.country}
+        </Typography>
         {resume.personalInfo.fullName}
       </Typography>
 
       <Typography>{resume.personalInfo.email}</Typography>
 
       <Typography>{resume.personalInfo.phone}</Typography>
+      {resume.personalInfo.linkedIn && (
+        <Typography>
+          LinkedIn:
+          {resume.personalInfo.linkedIn}
+        </Typography>
+      )}
+
+      {resume.personalInfo.github && (
+        <Typography>
+          GitHub:
+          {resume.personalInfo.github}
+        </Typography>
+      )}
+
+      {resume.personalInfo.website && (
+        <Typography>
+          Website:
+          {resume.personalInfo.website}
+        </Typography>
+      )}
 
       <Divider sx={{ my: 2 }} />
 
